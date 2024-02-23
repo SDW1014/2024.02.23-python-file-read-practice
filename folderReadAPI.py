@@ -8,6 +8,17 @@ def list_files_in_directory(directory_path):
     
     return files
 
-#지금 나의 경로를 가져온다. 
+# 지금 py가 들어있는 경로를 가져온다. 
 def find_now_directory():
     return os.getcwd()
+
+# file_path라는 경로에 있는 파일의 title을 new_title로 변경한다.
+def set_file_title(file_path, new_title):
+    directory = os.path.dirname(file_path)
+    
+    
+    new_file_path = os.path.join(directory, new_title) if directory else new_title # ? : 의 삼항 연산자에 익숙한데 ifelse도 익숙해져야겠지 그렇다고 한다 이게 python의 삼항이다. 
+    
+    os.rename(file_path, new_file_path)
+    
+    return new_file_path
