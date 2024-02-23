@@ -1,4 +1,5 @@
 import os
+import re
 
 #directory_path를 기준으로 그 안에 있는 파일들의 정보를 전부 가져온다. 
 def list_files_in_directory(directory_path):
@@ -22,3 +23,14 @@ def set_file_title(file_path, new_title):
     os.rename(file_path, new_file_path)
     
     return new_file_path
+
+# [".mp4", ".ts"]를 체크를 하고있음
+def extract_fileextension_checker(input_string):
+    matching_extensions = [".mp4", ".ts"]
+    file_extension_match = re.search(r'\.\w+$', input_string)
+    
+    if file_extension_match:
+        extracted_extension = file_extension_match.group()  # 확장자 추출
+        if extracted_extension in matching_extensions:
+            return True
+    return False
